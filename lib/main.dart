@@ -38,18 +38,25 @@ class MyHomePage extends StatelessWidget {
             centerTitle: true,
             title: Text(title),
             bottom: AppBar(
-              title: Container(
-                width: double.infinity,
-                height: 40,
-                color: Colors.white,
-                child: const Center(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Search or jump to...',
-                      prefixIcon: Icon(Icons.search),
+              toolbarHeight: 70,
+              title: Column(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    height: 40,
+                    color: Colors.white,
+                    child: Center(
+                      child: TextField(
+                          decoration: const InputDecoration(
+                            hintText: 'Search or jump to...',
+                            prefixIcon: Icon(Icons.search),
+                          ),
+                          onSubmitted: (String value) {
+                            print("onSubmitted: $value");
+                          }),
                     ),
                   ),
-                ),
+                ],
               ),
             ),
           ),
