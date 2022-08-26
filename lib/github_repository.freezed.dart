@@ -21,9 +21,12 @@ ResultData _$ResultDataFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ResultData {
   String get name => throw _privateConstructorUsedError;
-  String get numStars => throw _privateConstructorUsedError;
-  String get numWatching => throw _privateConstructorUsedError;
-  String get numForks => throw _privateConstructorUsedError;
+  @JsonKey(name: 'stargazers_count')
+  int get numStars => throw _privateConstructorUsedError;
+  @JsonKey(name: 'watchers_count')
+  int get numWatching => throw _privateConstructorUsedError;
+  @JsonKey(name: 'forks_count')
+  int get numForks => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +40,10 @@ abstract class $ResultDataCopyWith<$Res> {
           ResultData value, $Res Function(ResultData) then) =
       _$ResultDataCopyWithImpl<$Res>;
   $Res call(
-      {String name, String numStars, String numWatching, String numForks});
+      {String name,
+      @JsonKey(name: 'stargazers_count') int numStars,
+      @JsonKey(name: 'watchers_count') int numWatching,
+      @JsonKey(name: 'forks_count') int numForks});
 }
 
 /// @nodoc
@@ -63,15 +69,15 @@ class _$ResultDataCopyWithImpl<$Res> implements $ResultDataCopyWith<$Res> {
       numStars: numStars == freezed
           ? _value.numStars
           : numStars // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       numWatching: numWatching == freezed
           ? _value.numWatching
           : numWatching // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       numForks: numForks == freezed
           ? _value.numForks
           : numForks // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
     ));
   }
 }
@@ -84,7 +90,10 @@ abstract class _$$_ResultDataCopyWith<$Res>
       __$$_ResultDataCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String name, String numStars, String numWatching, String numForks});
+      {String name,
+      @JsonKey(name: 'stargazers_count') int numStars,
+      @JsonKey(name: 'watchers_count') int numWatching,
+      @JsonKey(name: 'forks_count') int numForks});
 }
 
 /// @nodoc
@@ -112,15 +121,15 @@ class __$$_ResultDataCopyWithImpl<$Res> extends _$ResultDataCopyWithImpl<$Res>
       numStars: numStars == freezed
           ? _value.numStars
           : numStars // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       numWatching: numWatching == freezed
           ? _value.numWatching
           : numWatching // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       numForks: numForks == freezed
           ? _value.numForks
           : numForks // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
     ));
   }
 }
@@ -130,9 +139,9 @@ class __$$_ResultDataCopyWithImpl<$Res> extends _$ResultDataCopyWithImpl<$Res>
 class _$_ResultData with DiagnosticableTreeMixin implements _ResultData {
   const _$_ResultData(
       {required this.name,
-      required this.numStars,
-      required this.numWatching,
-      required this.numForks});
+      @JsonKey(name: 'stargazers_count') required this.numStars,
+      @JsonKey(name: 'watchers_count') required this.numWatching,
+      @JsonKey(name: 'forks_count') required this.numForks});
 
   factory _$_ResultData.fromJson(Map<String, dynamic> json) =>
       _$$_ResultDataFromJson(json);
@@ -140,11 +149,14 @@ class _$_ResultData with DiagnosticableTreeMixin implements _ResultData {
   @override
   final String name;
   @override
-  final String numStars;
+  @JsonKey(name: 'stargazers_count')
+  final int numStars;
   @override
-  final String numWatching;
+  @JsonKey(name: 'watchers_count')
+  final int numWatching;
   @override
-  final String numForks;
+  @JsonKey(name: 'forks_count')
+  final int numForks;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -198,10 +210,11 @@ class _$_ResultData with DiagnosticableTreeMixin implements _ResultData {
 
 abstract class _ResultData implements ResultData {
   const factory _ResultData(
-      {required final String name,
-      required final String numStars,
-      required final String numWatching,
-      required final String numForks}) = _$_ResultData;
+          {required final String name,
+          @JsonKey(name: 'stargazers_count') required final int numStars,
+          @JsonKey(name: 'watchers_count') required final int numWatching,
+          @JsonKey(name: 'forks_count') required final int numForks}) =
+      _$_ResultData;
 
   factory _ResultData.fromJson(Map<String, dynamic> json) =
       _$_ResultData.fromJson;
@@ -209,11 +222,14 @@ abstract class _ResultData implements ResultData {
   @override
   String get name;
   @override
-  String get numStars;
+  @JsonKey(name: 'stargazers_count')
+  int get numStars;
   @override
-  String get numWatching;
+  @JsonKey(name: 'watchers_count')
+  int get numWatching;
   @override
-  String get numForks;
+  @JsonKey(name: 'forks_count')
+  int get numForks;
   @override
   @JsonKey(ignore: true)
   _$$_ResultDataCopyWith<_$_ResultData> get copyWith =>
@@ -226,7 +242,9 @@ SearchResponse _$SearchResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SearchResponse {
+  @JsonKey(name: 'items')
   List<Map<String, Object?>> get results => throw _privateConstructorUsedError;
+  @JsonKey(name: 'total_count')
   int get total => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -240,7 +258,9 @@ abstract class $SearchResponseCopyWith<$Res> {
   factory $SearchResponseCopyWith(
           SearchResponse value, $Res Function(SearchResponse) then) =
       _$SearchResponseCopyWithImpl<$Res>;
-  $Res call({List<Map<String, Object?>> results, int total});
+  $Res call(
+      {@JsonKey(name: 'items') List<Map<String, Object?>> results,
+      @JsonKey(name: 'total_count') int total});
 }
 
 /// @nodoc
@@ -277,7 +297,9 @@ abstract class _$$_SearchResponseCopyWith<$Res>
           _$_SearchResponse value, $Res Function(_$_SearchResponse) then) =
       __$$_SearchResponseCopyWithImpl<$Res>;
   @override
-  $Res call({List<Map<String, Object?>> results, int total});
+  $Res call(
+      {@JsonKey(name: 'items') List<Map<String, Object?>> results,
+      @JsonKey(name: 'total_count') int total});
 }
 
 /// @nodoc
@@ -297,11 +319,11 @@ class __$$_SearchResponseCopyWithImpl<$Res>
     Object? total = freezed,
   }) {
     return _then(_$_SearchResponse(
-      results == freezed
+      results: results == freezed
           ? _value._results
           : results // ignore: cast_nullable_to_non_nullable
               as List<Map<String, Object?>>,
-      total == freezed
+      total: total == freezed
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
               as int,
@@ -314,7 +336,11 @@ class __$$_SearchResponseCopyWithImpl<$Res>
 class _$_SearchResponse
     with DiagnosticableTreeMixin
     implements _SearchResponse {
-  _$_SearchResponse(final List<Map<String, Object?>> results, this.total)
+  const _$_SearchResponse(
+      {@JsonKey(name: 'items')
+          required final List<Map<String, Object?>> results,
+      @JsonKey(name: 'total_count')
+          required this.total})
       : _results = results;
 
   factory _$_SearchResponse.fromJson(Map<String, dynamic> json) =>
@@ -322,12 +348,14 @@ class _$_SearchResponse
 
   final List<Map<String, Object?>> _results;
   @override
+  @JsonKey(name: 'items')
   List<Map<String, Object?>> get results {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_results);
   }
 
   @override
+  @JsonKey(name: 'total_count')
   final int total;
 
   @override
@@ -374,16 +402,20 @@ class _$_SearchResponse
 }
 
 abstract class _SearchResponse implements SearchResponse {
-  factory _SearchResponse(
-          final List<Map<String, Object?>> results, final int total) =
-      _$_SearchResponse;
+  const factory _SearchResponse(
+      {@JsonKey(name: 'items')
+          required final List<Map<String, Object?>> results,
+      @JsonKey(name: 'total_count')
+          required final int total}) = _$_SearchResponse;
 
   factory _SearchResponse.fromJson(Map<String, dynamic> json) =
       _$_SearchResponse.fromJson;
 
   @override
+  @JsonKey(name: 'items')
   List<Map<String, Object?>> get results;
   @override
+  @JsonKey(name: 'total_count')
   int get total;
   @override
   @JsonKey(ignore: true)

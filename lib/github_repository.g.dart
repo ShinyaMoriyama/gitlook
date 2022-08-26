@@ -9,29 +9,29 @@ part of 'github_repository.dart';
 _$_ResultData _$$_ResultDataFromJson(Map<String, dynamic> json) =>
     _$_ResultData(
       name: json['name'] as String,
-      numStars: json['numStars'] as String,
-      numWatching: json['numWatching'] as String,
-      numForks: json['numForks'] as String,
+      numStars: json['stargazers_count'] as int,
+      numWatching: json['watchers_count'] as int,
+      numForks: json['forks_count'] as int,
     );
 
 Map<String, dynamic> _$$_ResultDataToJson(_$_ResultData instance) =>
     <String, dynamic>{
       'name': instance.name,
-      'numStars': instance.numStars,
-      'numWatching': instance.numWatching,
-      'numForks': instance.numForks,
+      'stargazers_count': instance.numStars,
+      'watchers_count': instance.numWatching,
+      'forks_count': instance.numForks,
     };
 
 _$_SearchResponse _$$_SearchResponseFromJson(Map<String, dynamic> json) =>
     _$_SearchResponse(
-      (json['results'] as List<dynamic>)
+      results: (json['items'] as List<dynamic>)
           .map((e) => e as Map<String, dynamic>)
           .toList(),
-      json['total'] as int,
+      total: json['total_count'] as int,
     );
 
 Map<String, dynamic> _$$_SearchResponseToJson(_$_SearchResponse instance) =>
     <String, dynamic>{
-      'results': instance.results,
-      'total': instance.total,
+      'items': instance.results,
+      'total_count': instance.total,
     };
