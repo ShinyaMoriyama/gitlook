@@ -74,6 +74,38 @@ class MyHomePage extends StatelessWidget {
                 numWatchs: 13,
               ),
               const RepoCard(
+                title: "frideosapps/frideos_flutter",
+                desc:
+                    "An all-in-one Fllutter package for state management, reactive objects, animations, effects, timed widgets etc.",
+                tabs: ["Flutter", "State Management"],
+                numStars: 123,
+                numWatchs: 13,
+              ),
+              const RepoCard(
+                title: "frideosapps/frideos_flutter",
+                desc:
+                    "An all-in-one Fllutter package for state management, reactive objects, animations, effects, timed widgets etc.",
+                tabs: ["Flutter", "State Management"],
+                numStars: 123,
+                numWatchs: 13,
+              ),
+              const RepoCard(
+                title: "frideosapps/frideos_flutter",
+                desc:
+                    "An all-in-one Fllutter package for state management, reactive objects, animations, effects, timed widgets etc.",
+                tabs: ["Flutter", "State Management"],
+                numStars: 123,
+                numWatchs: 13,
+              ),
+              const RepoCard(
+                title: "frideosapps/frideos_flutter",
+                desc:
+                    "An all-in-one Fllutter package for state management, reactive objects, animations, effects, timed widgets etc.",
+                tabs: ["Flutter", "State Management"],
+                numStars: 123,
+                numWatchs: 13,
+              ),
+              const RepoCard(
                 title: "google/material-design-icons",
                 desc: "Material Design icons by Google",
                 tabs: ["icons", "material-design", "android", "ios", "web"],

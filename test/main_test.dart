@@ -18,18 +18,18 @@ void main() {
 
   testWidgets('Visible search bar', (tester) async {
     await tester.pumpWidget(const MyApp());
+    expect(find.text('GitHub Search'), findsOneWidget);
 
     final gesture = await tester.startGesture(const Offset(0, 300));
 
     // scroll down
-    await gesture.moveBy(const Offset(0, -300));
+    await gesture.moveBy(const Offset(0, -200));
     await tester.pump();
-
-    expect(find.text('GitLook'), findsNothing);
+    expect(find.text('GitHub Search'), findsNothing);
 
     // scroll up
     await gesture.moveBy(const Offset(0, 100));
     await tester.pump();
-    expect(find.text('GitLook'), findsOneWidget);
+    expect(find.text('GitHub Search'), findsOneWidget);
   });
 }

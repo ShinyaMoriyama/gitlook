@@ -8,7 +8,30 @@ import './constant.dart';
 part 'github_repository.freezed.dart';
 part 'github_repository.g.dart';
 
-final dioProvider = Provider((ref) => Dio());
+final dioProvider = Provider((ref) {
+  final dio = Dio();
+  dio.interceptors.add(
+    InterceptorsWrapper(
+      onRequest: (options, handler) {
+        debugPrint('REQUEST[${options.method}] => PATH: ${options.path}');
+        return handler.next(options); //continue
+      },
+      onResponse: (response, handler) {
+        debugPrint(
+            'RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path}');
+        return handler.next(response); // continue
+      },
+      onError: (DioError err, handler) {
+        debugPrint(
+            'ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}');
+        return handler.resolve(Response(
+            requestOptions: RequestOptions(
+                path: githubSearchPath, data: githubResponseZero))); //customise
+      },
+    ),
+  );
+  return dio;
+});
 
 final repositoryProvider = Provider((ref) => GithubRepository(ref));
 
@@ -30,10 +53,7 @@ class GithubRepository {
           options: Options(
             headers: githubHeader,
           ),
-          // TODO deserialize error message
         );
-
-    // return SearchResponse.fromJson(Map<String, Object>.from(result.data!));
 
     return SearchResponse.fromJson(result.data!);
   }

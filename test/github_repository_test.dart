@@ -1,16 +1,8 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:gitlook/main.dart';
 import 'package:gitlook/github_repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mockito/annotations.dart';
+import 'package:gitlook/constant.dart';
 
 import 'package:dio/dio.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
@@ -18,27 +10,121 @@ import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'response_data.dart';
 
 void main() {
-  test('Dio normal', () async {
+  group("Normal case", () {
     final dio = Dio(BaseOptions());
     final dioAdapter = DioAdapter(dio: dio);
 
-    const path = 'https://api.github.com/search/repositories';
     dioAdapter.onGet(
-      path,
+      githubSearchPath,
       (server) => server.reply(
         200,
         githubOne,
-        delay: const Duration(milliseconds: 300),
+        delay: const Duration(milliseconds: 100),
+      ),
+      queryParameters: <String, String>{
+        githubSearchQuery: "dummy",
+      },
+      headers: githubHeader,
+    );
+
+    test('Successful with FromJson', () async {
+      final response = await dio.get(
+        githubSearchPath,
+        queryParameters: <String, String>{
+          githubSearchQuery: "dummy",
+        },
+        options: Options(headers: githubHeader),
+      );
+
+      final serchResponse = SearchResponse.fromJson(response.data!);
+      expect(serchResponse.total, 1);
+
+      final resultDataList =
+          serchResponse.results.map((e) => ResultData.fromJson(e)).toList();
+
+      expect(resultDataList.length, 1);
+    });
+
+    test("Successful with GithubRepository search", () async {
+      final container = ProviderContainer(
+        overrides: [dioProvider.overrideWithValue(dio)],
+      );
+      addTearDown(container.dispose);
+
+      final resultDataList =
+          await container.read(repositoryProvider).search("dummy", null);
+
+      expect(resultDataList.length, 1);
+    });
+  });
+
+  group("Error case", () {
+    final dio = Dio(BaseOptions());
+    dio.interceptors.add(
+      InterceptorsWrapper(
+        onError: (DioError err, handler) {
+          return handler.resolve(
+            Response(
+              statusCode: 408,
+              data: githubResponseZero,
+              requestOptions: RequestOptions(
+                path: githubSearchPath,
+              ),
+            ),
+          ); //customise
+        },
       ),
     );
-    final response = await dio.get(path);
+    final dioAdapter = DioAdapter(dio: dio);
 
-    final serchResponse = SearchResponse.fromJson(response.data!);
-    expect(serchResponse.total, 1);
+    dioAdapter.onGet(
+      githubSearchPath,
+      (server) => server.throws(
+        408,
+        DioError(
+          requestOptions: RequestOptions(
+            path: githubSearchPath,
+            queryParameters: <String, String>{
+              githubSearchQuery: "dummy",
+            },
+            headers: githubHeader,
+          ),
+          type: DioErrorType.sendTimeout,
+        ),
+        delay: const Duration(milliseconds: 100),
+      ),
+    );
 
-    final resultDataList =
-        serchResponse.results.map((e) => ResultData.fromJson(e)).toList();
+    test('Request timeout with FromJson', () async {
+      final response = await dio.get(
+        githubSearchPath,
+        queryParameters: <String, String>{
+          githubSearchQuery: "dummy",
+        },
+        options: Options(headers: githubHeader),
+      );
 
-    expect(resultDataList.length, 1);
+      expect(response.statusCode, 408);
+
+      final serchResponse = SearchResponse.fromJson(response.data!);
+      expect(serchResponse.total, 0);
+
+      final resultDataList =
+          serchResponse.results.map((e) => ResultData.fromJson(e)).toList();
+
+      expect(resultDataList.length, 0);
+    });
+
+    test("Request timeout with GithubRepository search", () async {
+      final container = ProviderContainer(
+        overrides: [dioProvider.overrideWithValue(dio)],
+      );
+      addTearDown(container.dispose);
+
+      final resultDataList =
+          await container.read(repositoryProvider).search("dummy", null);
+
+      expect(resultDataList.length, 0);
+    });
   });
 }
