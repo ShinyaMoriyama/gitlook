@@ -23,8 +23,9 @@ final dioProvider = Provider((ref) {
       },
       onError: (DioError err, handler) {
         debugPrint(
-            'ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}');
+            'ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path} MESSAGE[${err.message}]');
         return handler.resolve(Response(
+            data: githubResponseZero,
             requestOptions: RequestOptions(
                 path: githubSearchPath, data: githubResponseZero))); //customise
       },
@@ -47,8 +48,9 @@ class GithubRepository {
     final result = await ref.read(dioProvider).get<Map<String, Object?>>(
           githubSearchPath,
           cancelToken: cancelToken,
-          queryParameters: <String, String>{
+          queryParameters: <String, dynamic>{
             githubSearchQuery: keyword,
+            githubSearchPerPageKey: githubSearchPerPageValue,
           },
           options: Options(
             headers: githubHeader,
@@ -63,6 +65,7 @@ class GithubRepository {
     CancelToken? cancelToken,
   ) async {
     final response = await _get(keyword, cancelToken);
+    print("response: $response");
 
     return response.results.map((e) => ResultData.fromJson(e)).toList();
   }
@@ -71,14 +74,26 @@ class GithubRepository {
 @freezed
 class ResultData with _$ResultData {
   const factory ResultData({
-    required String name,
-    @JsonKey(name: 'stargazers_count') required int numStars,
-    @JsonKey(name: 'watchers_count') required int numWatching,
-    @JsonKey(name: 'forks_count') required int numForks,
+    @JsonKey(name: "full_name") required String name,
+    @JsonKey(defaultValue: "default description") required String description,
+    required Owner owner,
+    @JsonKey(name: "stargazers_count") required int numStars,
+    @JsonKey(name: "watchers_count") required int numWatching,
+    @JsonKey(name: "forks_count") required int numForks,
+    required List<String> topics,
   }) = _ResultData;
 
   factory ResultData.fromJson(Map<String, Object?> json) =>
       _$ResultDataFromJson(json);
+}
+
+@freezed
+class Owner with _$Owner {
+  const factory Owner({
+    @JsonKey(name: "avatar_url") required String avatarUrl,
+  }) = _Owner;
+
+  factory Owner.fromJson(Map<String, Object?> json) => _$OwnerFromJson(json);
 }
 
 @freezed

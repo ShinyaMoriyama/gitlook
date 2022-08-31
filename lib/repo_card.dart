@@ -3,16 +3,14 @@ import 'package:flutter/material.dart';
 class RepoCard extends StatelessWidget {
   final String title;
   final String desc;
-  final List<String> tabs;
+  final List<String> topics;
   final int numStars;
-  final int numWatchs;
 
   const RepoCard({
     required this.title,
     required this.desc,
-    required this.tabs,
+    required this.topics,
     required this.numStars,
-    required this.numWatchs,
     Key? key,
   }) : super(key: key);
 
@@ -37,7 +35,7 @@ class RepoCard extends StatelessWidget {
             Wrap(
               spacing: 4,
               runSpacing: 6,
-              children: tabs
+              children: topics
                   .map((e) => Chip(
                         label: Text(e),
                         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,

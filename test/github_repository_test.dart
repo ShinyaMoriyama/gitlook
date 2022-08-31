@@ -7,10 +7,10 @@ import 'package:gitlook/constant.dart';
 import 'package:dio/dio.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 
-import 'response_data.dart';
+import 'data/response_data.dart';
 
 void main() {
-  group("Normal case", () {
+  group("Status succesful", () {
     final dio = Dio(BaseOptions());
     final dioAdapter = DioAdapter(dio: dio);
 
@@ -58,7 +58,7 @@ void main() {
     });
   });
 
-  group("Error case", () {
+  group("Status error", () {
     final dio = Dio(BaseOptions());
     dio.interceptors.add(
       InterceptorsWrapper(

@@ -20,13 +20,18 @@ ResultData _$ResultDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ResultData {
+  @JsonKey(name: "full_name")
   String get name => throw _privateConstructorUsedError;
-  @JsonKey(name: 'stargazers_count')
+  @JsonKey(defaultValue: "default description")
+  String get description => throw _privateConstructorUsedError;
+  Owner get owner => throw _privateConstructorUsedError;
+  @JsonKey(name: "stargazers_count")
   int get numStars => throw _privateConstructorUsedError;
-  @JsonKey(name: 'watchers_count')
+  @JsonKey(name: "watchers_count")
   int get numWatching => throw _privateConstructorUsedError;
-  @JsonKey(name: 'forks_count')
+  @JsonKey(name: "forks_count")
   int get numForks => throw _privateConstructorUsedError;
+  List<String> get topics => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,10 +45,15 @@ abstract class $ResultDataCopyWith<$Res> {
           ResultData value, $Res Function(ResultData) then) =
       _$ResultDataCopyWithImpl<$Res>;
   $Res call(
-      {String name,
-      @JsonKey(name: 'stargazers_count') int numStars,
-      @JsonKey(name: 'watchers_count') int numWatching,
-      @JsonKey(name: 'forks_count') int numForks});
+      {@JsonKey(name: "full_name") String name,
+      @JsonKey(defaultValue: "default description") String description,
+      Owner owner,
+      @JsonKey(name: "stargazers_count") int numStars,
+      @JsonKey(name: "watchers_count") int numWatching,
+      @JsonKey(name: "forks_count") int numForks,
+      List<String> topics});
+
+  $OwnerCopyWith<$Res> get owner;
 }
 
 /// @nodoc
@@ -57,15 +67,26 @@ class _$ResultDataCopyWithImpl<$Res> implements $ResultDataCopyWith<$Res> {
   @override
   $Res call({
     Object? name = freezed,
+    Object? description = freezed,
+    Object? owner = freezed,
     Object? numStars = freezed,
     Object? numWatching = freezed,
     Object? numForks = freezed,
+    Object? topics = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      owner: owner == freezed
+          ? _value.owner
+          : owner // ignore: cast_nullable_to_non_nullable
+              as Owner,
       numStars: numStars == freezed
           ? _value.numStars
           : numStars // ignore: cast_nullable_to_non_nullable
@@ -78,7 +99,18 @@ class _$ResultDataCopyWithImpl<$Res> implements $ResultDataCopyWith<$Res> {
           ? _value.numForks
           : numForks // ignore: cast_nullable_to_non_nullable
               as int,
+      topics: topics == freezed
+          ? _value.topics
+          : topics // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
+  }
+
+  @override
+  $OwnerCopyWith<$Res> get owner {
+    return $OwnerCopyWith<$Res>(_value.owner, (value) {
+      return _then(_value.copyWith(owner: value));
+    });
   }
 }
 
@@ -90,10 +122,16 @@ abstract class _$$_ResultDataCopyWith<$Res>
       __$$_ResultDataCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String name,
-      @JsonKey(name: 'stargazers_count') int numStars,
-      @JsonKey(name: 'watchers_count') int numWatching,
-      @JsonKey(name: 'forks_count') int numForks});
+      {@JsonKey(name: "full_name") String name,
+      @JsonKey(defaultValue: "default description") String description,
+      Owner owner,
+      @JsonKey(name: "stargazers_count") int numStars,
+      @JsonKey(name: "watchers_count") int numWatching,
+      @JsonKey(name: "forks_count") int numForks,
+      List<String> topics});
+
+  @override
+  $OwnerCopyWith<$Res> get owner;
 }
 
 /// @nodoc
@@ -109,15 +147,26 @@ class __$$_ResultDataCopyWithImpl<$Res> extends _$ResultDataCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = freezed,
+    Object? description = freezed,
+    Object? owner = freezed,
     Object? numStars = freezed,
     Object? numWatching = freezed,
     Object? numForks = freezed,
+    Object? topics = freezed,
   }) {
     return _then(_$_ResultData(
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      owner: owner == freezed
+          ? _value.owner
+          : owner // ignore: cast_nullable_to_non_nullable
+              as Owner,
       numStars: numStars == freezed
           ? _value.numStars
           : numStars // ignore: cast_nullable_to_non_nullable
@@ -130,6 +179,10 @@ class __$$_ResultDataCopyWithImpl<$Res> extends _$ResultDataCopyWithImpl<$Res>
           ? _value.numForks
           : numForks // ignore: cast_nullable_to_non_nullable
               as int,
+      topics: topics == freezed
+          ? _value._topics
+          : topics // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -138,29 +191,45 @@ class __$$_ResultDataCopyWithImpl<$Res> extends _$ResultDataCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ResultData with DiagnosticableTreeMixin implements _ResultData {
   const _$_ResultData(
-      {required this.name,
-      @JsonKey(name: 'stargazers_count') required this.numStars,
-      @JsonKey(name: 'watchers_count') required this.numWatching,
-      @JsonKey(name: 'forks_count') required this.numForks});
+      {@JsonKey(name: "full_name") required this.name,
+      @JsonKey(defaultValue: "default description") required this.description,
+      required this.owner,
+      @JsonKey(name: "stargazers_count") required this.numStars,
+      @JsonKey(name: "watchers_count") required this.numWatching,
+      @JsonKey(name: "forks_count") required this.numForks,
+      required final List<String> topics})
+      : _topics = topics;
 
   factory _$_ResultData.fromJson(Map<String, dynamic> json) =>
       _$$_ResultDataFromJson(json);
 
   @override
+  @JsonKey(name: "full_name")
   final String name;
   @override
-  @JsonKey(name: 'stargazers_count')
+  @JsonKey(defaultValue: "default description")
+  final String description;
+  @override
+  final Owner owner;
+  @override
+  @JsonKey(name: "stargazers_count")
   final int numStars;
   @override
-  @JsonKey(name: 'watchers_count')
+  @JsonKey(name: "watchers_count")
   final int numWatching;
   @override
-  @JsonKey(name: 'forks_count')
+  @JsonKey(name: "forks_count")
   final int numForks;
+  final List<String> _topics;
+  @override
+  List<String> get topics {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_topics);
+  }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ResultData(name: $name, numStars: $numStars, numWatching: $numWatching, numForks: $numForks)';
+    return 'ResultData(name: $name, description: $description, owner: $owner, numStars: $numStars, numWatching: $numWatching, numForks: $numForks, topics: $topics)';
   }
 
   @override
@@ -169,9 +238,12 @@ class _$_ResultData with DiagnosticableTreeMixin implements _ResultData {
     properties
       ..add(DiagnosticsProperty('type', 'ResultData'))
       ..add(DiagnosticsProperty('name', name))
+      ..add(DiagnosticsProperty('description', description))
+      ..add(DiagnosticsProperty('owner', owner))
       ..add(DiagnosticsProperty('numStars', numStars))
       ..add(DiagnosticsProperty('numWatching', numWatching))
-      ..add(DiagnosticsProperty('numForks', numForks));
+      ..add(DiagnosticsProperty('numForks', numForks))
+      ..add(DiagnosticsProperty('topics', topics));
   }
 
   @override
@@ -180,10 +252,14 @@ class _$_ResultData with DiagnosticableTreeMixin implements _ResultData {
         (other.runtimeType == runtimeType &&
             other is _$_ResultData &&
             const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description) &&
+            const DeepCollectionEquality().equals(other.owner, owner) &&
             const DeepCollectionEquality().equals(other.numStars, numStars) &&
             const DeepCollectionEquality()
                 .equals(other.numWatching, numWatching) &&
-            const DeepCollectionEquality().equals(other.numForks, numForks));
+            const DeepCollectionEquality().equals(other.numForks, numForks) &&
+            const DeepCollectionEquality().equals(other._topics, _topics));
   }
 
   @JsonKey(ignore: true)
@@ -191,9 +267,12 @@ class _$_ResultData with DiagnosticableTreeMixin implements _ResultData {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(owner),
       const DeepCollectionEquality().hash(numStars),
       const DeepCollectionEquality().hash(numWatching),
-      const DeepCollectionEquality().hash(numForks));
+      const DeepCollectionEquality().hash(numForks),
+      const DeepCollectionEquality().hash(_topics));
 
   @JsonKey(ignore: true)
   @override
@@ -210,29 +289,183 @@ class _$_ResultData with DiagnosticableTreeMixin implements _ResultData {
 
 abstract class _ResultData implements ResultData {
   const factory _ResultData(
-          {required final String name,
-          @JsonKey(name: 'stargazers_count') required final int numStars,
-          @JsonKey(name: 'watchers_count') required final int numWatching,
-          @JsonKey(name: 'forks_count') required final int numForks}) =
-      _$_ResultData;
+      {@JsonKey(name: "full_name")
+          required final String name,
+      @JsonKey(defaultValue: "default description")
+          required final String description,
+      required final Owner owner,
+      @JsonKey(name: "stargazers_count")
+          required final int numStars,
+      @JsonKey(name: "watchers_count")
+          required final int numWatching,
+      @JsonKey(name: "forks_count")
+          required final int numForks,
+      required final List<String> topics}) = _$_ResultData;
 
   factory _ResultData.fromJson(Map<String, dynamic> json) =
       _$_ResultData.fromJson;
 
   @override
+  @JsonKey(name: "full_name")
   String get name;
   @override
-  @JsonKey(name: 'stargazers_count')
+  @JsonKey(defaultValue: "default description")
+  String get description;
+  @override
+  Owner get owner;
+  @override
+  @JsonKey(name: "stargazers_count")
   int get numStars;
   @override
-  @JsonKey(name: 'watchers_count')
+  @JsonKey(name: "watchers_count")
   int get numWatching;
   @override
-  @JsonKey(name: 'forks_count')
+  @JsonKey(name: "forks_count")
   int get numForks;
+  @override
+  List<String> get topics;
   @override
   @JsonKey(ignore: true)
   _$$_ResultDataCopyWith<_$_ResultData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Owner _$OwnerFromJson(Map<String, dynamic> json) {
+  return _Owner.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Owner {
+  @JsonKey(name: "avatar_url")
+  String get avatarUrl => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $OwnerCopyWith<Owner> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $OwnerCopyWith<$Res> {
+  factory $OwnerCopyWith(Owner value, $Res Function(Owner) then) =
+      _$OwnerCopyWithImpl<$Res>;
+  $Res call({@JsonKey(name: "avatar_url") String avatarUrl});
+}
+
+/// @nodoc
+class _$OwnerCopyWithImpl<$Res> implements $OwnerCopyWith<$Res> {
+  _$OwnerCopyWithImpl(this._value, this._then);
+
+  final Owner _value;
+  // ignore: unused_field
+  final $Res Function(Owner) _then;
+
+  @override
+  $Res call({
+    Object? avatarUrl = freezed,
+  }) {
+    return _then(_value.copyWith(
+      avatarUrl: avatarUrl == freezed
+          ? _value.avatarUrl
+          : avatarUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_OwnerCopyWith<$Res> implements $OwnerCopyWith<$Res> {
+  factory _$$_OwnerCopyWith(_$_Owner value, $Res Function(_$_Owner) then) =
+      __$$_OwnerCopyWithImpl<$Res>;
+  @override
+  $Res call({@JsonKey(name: "avatar_url") String avatarUrl});
+}
+
+/// @nodoc
+class __$$_OwnerCopyWithImpl<$Res> extends _$OwnerCopyWithImpl<$Res>
+    implements _$$_OwnerCopyWith<$Res> {
+  __$$_OwnerCopyWithImpl(_$_Owner _value, $Res Function(_$_Owner) _then)
+      : super(_value, (v) => _then(v as _$_Owner));
+
+  @override
+  _$_Owner get _value => super._value as _$_Owner;
+
+  @override
+  $Res call({
+    Object? avatarUrl = freezed,
+  }) {
+    return _then(_$_Owner(
+      avatarUrl: avatarUrl == freezed
+          ? _value.avatarUrl
+          : avatarUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_Owner with DiagnosticableTreeMixin implements _Owner {
+  const _$_Owner({@JsonKey(name: "avatar_url") required this.avatarUrl});
+
+  factory _$_Owner.fromJson(Map<String, dynamic> json) =>
+      _$$_OwnerFromJson(json);
+
+  @override
+  @JsonKey(name: "avatar_url")
+  final String avatarUrl;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'Owner(avatarUrl: $avatarUrl)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'Owner'))
+      ..add(DiagnosticsProperty('avatarUrl', avatarUrl));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Owner &&
+            const DeepCollectionEquality().equals(other.avatarUrl, avatarUrl));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(avatarUrl));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_OwnerCopyWith<_$_Owner> get copyWith =>
+      __$$_OwnerCopyWithImpl<_$_Owner>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_OwnerToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Owner implements Owner {
+  const factory _Owner(
+          {@JsonKey(name: "avatar_url") required final String avatarUrl}) =
+      _$_Owner;
+
+  factory _Owner.fromJson(Map<String, dynamic> json) = _$_Owner.fromJson;
+
+  @override
+  @JsonKey(name: "avatar_url")
+  String get avatarUrl;
+  @override
+  @JsonKey(ignore: true)
+  _$$_OwnerCopyWith<_$_Owner> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
