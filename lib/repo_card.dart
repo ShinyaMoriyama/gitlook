@@ -52,10 +52,6 @@ class RepoCard extends StatelessWidget {
                     width: 20,
                     child: CircleAvatar(
                       backgroundImage: NetworkImage(avatarUrl),
-                      onBackgroundImageError: (exception, stackTrace) {
-                        debugPrint("exception [$exception]");
-                        debugPrint("stackTrace [$stackTrace]");
-                      },
                       backgroundColor: Colors.grey,
                     ),
                   ),

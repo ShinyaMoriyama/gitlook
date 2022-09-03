@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:dio/dio.dart';
+import 'package:network_image_mock/network_image_mock.dart';
 
 import 'package:gitlook/github_repository.dart';
 import 'package:gitlook/main.dart';
@@ -34,21 +35,22 @@ void main() {
       );
       expect(find.text('GitHub Search'), findsOneWidget);
 
-      await tester.enterText(find.byType(TextField), 'hawaii');
-      await tester.testTextInput.receiveAction(TextInputAction.done);
-      await tester.pumpAndSettle();
+      // to prevent NetworkImage from http status 400
+      mockNetworkImagesFor(() async {
+        await tester.enterText(find.byType(TextField), 'hawaii');
+        await tester.testTextInput.receiveAction(TextInputAction.done);
+        await tester.pumpAndSettle();
+        final gesture = await tester.startGesture(const Offset(0, 300));
+        // scroll down
+        await gesture.moveBy(const Offset(0, -200));
+        await tester.pump();
+        expect(find.text('GitHub Search'), findsNothing);
 
-      final gesture = await tester.startGesture(const Offset(0, 300));
-
-      // scroll down
-      await gesture.moveBy(const Offset(0, -200));
-      await tester.pump();
-      expect(find.text('GitHub Search'), findsNothing);
-
-      // scroll up
-      await gesture.moveBy(const Offset(0, 100));
-      await tester.pump();
-      expect(find.text('GitHub Search'), findsOneWidget);
+        // scroll up
+        await gesture.moveBy(const Offset(0, 100));
+        await tester.pump();
+        expect(find.text('GitHub Search'), findsOneWidget);
+      });
     });
   });
 
