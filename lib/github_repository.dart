@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 import './constant.dart';
+import './configuration.dart';
 
 part 'github_repository.freezed.dart';
 part 'github_repository.g.dart';
@@ -45,6 +46,7 @@ class GithubRepository {
     String keyword,
     CancelToken? cancelToken,
   ) async {
+    final githubHeader = await ref.read(githubHeaderProvider.future);
     final result = await ref.read(dioProvider).get<Map<String, Object?>>(
           githubSearchPath,
           cancelToken: cancelToken,
@@ -65,8 +67,6 @@ class GithubRepository {
     CancelToken? cancelToken,
   ) async {
     final response = await _get(keyword, cancelToken);
-    print("response: $response");
-
     return response.results.map((e) => ResultData.fromJson(e)).toList();
   }
 }
@@ -80,6 +80,7 @@ class ResultData with _$ResultData {
     @JsonKey(name: "stargazers_count") required int numStars,
     @JsonKey(name: "watchers_count") required int numWatching,
     @JsonKey(name: "forks_count") required int numForks,
+    @JsonKey(defaultValue: "unknown") required String language,
     required List<String> topics,
   }) = _ResultData;
 

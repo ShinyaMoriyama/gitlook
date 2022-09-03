@@ -44,26 +44,22 @@ class HomeAppBar extends ConsumerWidget {
       title: const Text("GitHub Search"),
       bottom: AppBar(
         toolbarHeight: 70,
-        title: Column(
-          children: [
-            Container(
-              width: double.infinity,
-              height: 40,
-              color: Colors.white,
-              child: Center(
-                child: TextField(
-                    controller: textEdigintController,
-                    decoration: const InputDecoration(
-                      hintText: 'Search or jump to...',
-                      prefixIcon: Icon(Icons.search),
-                    ),
-                    onSubmitted: (String value) {
-                      print("onSubmitted: $value");
-                      // ref.read(serchProvider(value));
-                    }),
-              ),
+        title: TextField(
+          controller: textEdigintController,
+          textAlignVertical: TextAlignVertical.center,
+          decoration: InputDecoration(
+            contentPadding: const EdgeInsets.all(8),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.0),
             ),
-          ],
+            hintText: 'Search or jump to...',
+            prefixIcon: const Icon(Icons.search),
+            filled: true,
+            fillColor: Colors.white,
+          ),
+          onSubmitted: (String value) {
+            print("onSubmitted: $value");
+          },
         ),
       ),
     );
@@ -91,6 +87,10 @@ class HomeListView extends HookConsumerWidget {
             desc: data[index].description,
             topics: data[index].topics,
             numStars: data[index].numStars,
+            numWatching: data[index].numWatching,
+            numForks: data[index].numForks,
+            language: data[index].language,
+            avatarUrl: data[index].owner.avatarUrl,
           ),
         ),
       );

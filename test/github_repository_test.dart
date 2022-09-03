@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:gitlook/configuration.dart';
 
 import 'package:gitlook/github_repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -11,21 +13,30 @@ import 'data/response_data.dart';
 
 void main() {
   group("Status succesful", () {
+    Map<String, dynamic>? githubHeader;
     final dio = Dio(BaseOptions());
     final dioAdapter = DioAdapter(dio: dio);
 
-    dioAdapter.onGet(
-      githubSearchPath,
-      (server) => server.reply(
-        200,
-        githubOne,
-        delay: const Duration(milliseconds: 100),
-      ),
-      queryParameters: <String, String>{
-        githubSearchQuery: "dummy",
-      },
-      headers: githubHeader,
-    );
+    setUp(() async {
+      final container = ProviderContainer();
+      addTearDown(container.dispose);
+
+      WidgetsFlutterBinding.ensureInitialized();
+      githubHeader = await container.read(githubHeaderProvider.future);
+
+      dioAdapter.onGet(
+        githubSearchPath,
+        (server) => server.reply(
+          200,
+          githubOne,
+          delay: const Duration(milliseconds: 100),
+        ),
+        queryParameters: <String, String>{
+          githubSearchQuery: "dummy",
+        },
+        headers: githubHeader,
+      );
+    });
 
     test('Successful with FromJson', () async {
       final response = await dio.get(
@@ -59,41 +70,50 @@ void main() {
   });
 
   group("Status error", () {
+    Map<String, dynamic>? githubHeader;
     final dio = Dio(BaseOptions());
-    dio.interceptors.add(
-      InterceptorsWrapper(
-        onError: (DioError err, handler) {
-          return handler.resolve(
-            Response(
-              statusCode: 408,
-              data: githubResponseZero,
-              requestOptions: RequestOptions(
-                path: githubSearchPath,
-              ),
-            ),
-          ); //customise
-        },
-      ),
-    );
     final dioAdapter = DioAdapter(dio: dio);
 
-    dioAdapter.onGet(
-      githubSearchPath,
-      (server) => server.throws(
-        408,
-        DioError(
-          requestOptions: RequestOptions(
-            path: githubSearchPath,
-            queryParameters: <String, String>{
-              githubSearchQuery: "dummy",
-            },
-            headers: githubHeader,
-          ),
-          type: DioErrorType.sendTimeout,
+    setUp(() async {
+      final container = ProviderContainer();
+      addTearDown(container.dispose);
+
+      WidgetsFlutterBinding.ensureInitialized();
+      final githubHeader = await container.read(githubHeaderProvider.future);
+
+      dio.interceptors.add(
+        InterceptorsWrapper(
+          onError: (DioError err, handler) {
+            return handler.resolve(
+              Response(
+                statusCode: 408,
+                data: githubResponseZero,
+                requestOptions: RequestOptions(
+                  path: githubSearchPath,
+                ),
+              ),
+            ); //customise
+          },
         ),
-        delay: const Duration(milliseconds: 100),
-      ),
-    );
+      );
+      dioAdapter.onGet(
+        githubSearchPath,
+        (server) => server.throws(
+          408,
+          DioError(
+            requestOptions: RequestOptions(
+              path: githubSearchPath,
+              queryParameters: <String, String>{
+                githubSearchQuery: "dummy",
+              },
+              headers: githubHeader,
+            ),
+            type: DioErrorType.sendTimeout,
+          ),
+          delay: const Duration(milliseconds: 100),
+        ),
+      );
+    });
 
     test('Request timeout with FromJson', () async {
       final response = await dio.get(

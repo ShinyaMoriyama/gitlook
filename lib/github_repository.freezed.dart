@@ -31,6 +31,8 @@ mixin _$ResultData {
   int get numWatching => throw _privateConstructorUsedError;
   @JsonKey(name: "forks_count")
   int get numForks => throw _privateConstructorUsedError;
+  @JsonKey(defaultValue: "unknown")
+  String get language => throw _privateConstructorUsedError;
   List<String> get topics => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -51,6 +53,7 @@ abstract class $ResultDataCopyWith<$Res> {
       @JsonKey(name: "stargazers_count") int numStars,
       @JsonKey(name: "watchers_count") int numWatching,
       @JsonKey(name: "forks_count") int numForks,
+      @JsonKey(defaultValue: "unknown") String language,
       List<String> topics});
 
   $OwnerCopyWith<$Res> get owner;
@@ -72,6 +75,7 @@ class _$ResultDataCopyWithImpl<$Res> implements $ResultDataCopyWith<$Res> {
     Object? numStars = freezed,
     Object? numWatching = freezed,
     Object? numForks = freezed,
+    Object? language = freezed,
     Object? topics = freezed,
   }) {
     return _then(_value.copyWith(
@@ -99,6 +103,10 @@ class _$ResultDataCopyWithImpl<$Res> implements $ResultDataCopyWith<$Res> {
           ? _value.numForks
           : numForks // ignore: cast_nullable_to_non_nullable
               as int,
+      language: language == freezed
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as String,
       topics: topics == freezed
           ? _value.topics
           : topics // ignore: cast_nullable_to_non_nullable
@@ -128,6 +136,7 @@ abstract class _$$_ResultDataCopyWith<$Res>
       @JsonKey(name: "stargazers_count") int numStars,
       @JsonKey(name: "watchers_count") int numWatching,
       @JsonKey(name: "forks_count") int numForks,
+      @JsonKey(defaultValue: "unknown") String language,
       List<String> topics});
 
   @override
@@ -152,6 +161,7 @@ class __$$_ResultDataCopyWithImpl<$Res> extends _$ResultDataCopyWithImpl<$Res>
     Object? numStars = freezed,
     Object? numWatching = freezed,
     Object? numForks = freezed,
+    Object? language = freezed,
     Object? topics = freezed,
   }) {
     return _then(_$_ResultData(
@@ -179,6 +189,10 @@ class __$$_ResultDataCopyWithImpl<$Res> extends _$ResultDataCopyWithImpl<$Res>
           ? _value.numForks
           : numForks // ignore: cast_nullable_to_non_nullable
               as int,
+      language: language == freezed
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as String,
       topics: topics == freezed
           ? _value._topics
           : topics // ignore: cast_nullable_to_non_nullable
@@ -197,6 +211,7 @@ class _$_ResultData with DiagnosticableTreeMixin implements _ResultData {
       @JsonKey(name: "stargazers_count") required this.numStars,
       @JsonKey(name: "watchers_count") required this.numWatching,
       @JsonKey(name: "forks_count") required this.numForks,
+      @JsonKey(defaultValue: "unknown") required this.language,
       required final List<String> topics})
       : _topics = topics;
 
@@ -220,6 +235,9 @@ class _$_ResultData with DiagnosticableTreeMixin implements _ResultData {
   @override
   @JsonKey(name: "forks_count")
   final int numForks;
+  @override
+  @JsonKey(defaultValue: "unknown")
+  final String language;
   final List<String> _topics;
   @override
   List<String> get topics {
@@ -229,7 +247,7 @@ class _$_ResultData with DiagnosticableTreeMixin implements _ResultData {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ResultData(name: $name, description: $description, owner: $owner, numStars: $numStars, numWatching: $numWatching, numForks: $numForks, topics: $topics)';
+    return 'ResultData(name: $name, description: $description, owner: $owner, numStars: $numStars, numWatching: $numWatching, numForks: $numForks, language: $language, topics: $topics)';
   }
 
   @override
@@ -243,6 +261,7 @@ class _$_ResultData with DiagnosticableTreeMixin implements _ResultData {
       ..add(DiagnosticsProperty('numStars', numStars))
       ..add(DiagnosticsProperty('numWatching', numWatching))
       ..add(DiagnosticsProperty('numForks', numForks))
+      ..add(DiagnosticsProperty('language', language))
       ..add(DiagnosticsProperty('topics', topics));
   }
 
@@ -259,6 +278,7 @@ class _$_ResultData with DiagnosticableTreeMixin implements _ResultData {
             const DeepCollectionEquality()
                 .equals(other.numWatching, numWatching) &&
             const DeepCollectionEquality().equals(other.numForks, numForks) &&
+            const DeepCollectionEquality().equals(other.language, language) &&
             const DeepCollectionEquality().equals(other._topics, _topics));
   }
 
@@ -272,6 +292,7 @@ class _$_ResultData with DiagnosticableTreeMixin implements _ResultData {
       const DeepCollectionEquality().hash(numStars),
       const DeepCollectionEquality().hash(numWatching),
       const DeepCollectionEquality().hash(numForks),
+      const DeepCollectionEquality().hash(language),
       const DeepCollectionEquality().hash(_topics));
 
   @JsonKey(ignore: true)
@@ -300,6 +321,8 @@ abstract class _ResultData implements ResultData {
           required final int numWatching,
       @JsonKey(name: "forks_count")
           required final int numForks,
+      @JsonKey(defaultValue: "unknown")
+          required final String language,
       required final List<String> topics}) = _$_ResultData;
 
   factory _ResultData.fromJson(Map<String, dynamic> json) =
@@ -322,6 +345,9 @@ abstract class _ResultData implements ResultData {
   @override
   @JsonKey(name: "forks_count")
   int get numForks;
+  @override
+  @JsonKey(defaultValue: "unknown")
+  String get language;
   @override
   List<String> get topics;
   @override

@@ -14,6 +14,7 @@ _$_ResultData _$$_ResultDataFromJson(Map<String, dynamic> json) =>
       numStars: json['stargazers_count'] as int,
       numWatching: json['watchers_count'] as int,
       numForks: json['forks_count'] as int,
+      language: json['language'] as String? ?? 'unknown',
       topics:
           (json['topics'] as List<dynamic>).map((e) => e as String).toList(),
     );
@@ -26,6 +27,7 @@ Map<String, dynamic> _$$_ResultDataToJson(_$_ResultData instance) =>
       'stargazers_count': instance.numStars,
       'watchers_count': instance.numWatching,
       'forks_count': instance.numForks,
+      'language': instance.language,
       'topics': instance.topics,
     };
 
