@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // title: 'GitHub Search',
+      // title: 'GitHub Repository',
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
       ),

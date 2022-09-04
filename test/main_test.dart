@@ -7,7 +7,7 @@ void main() {
     testWidgets('App title', (WidgetTester tester) async {
       await tester.pumpWidget(const ProviderScope(child: MyApp()));
 
-      expect(find.text('GitHub Search'), findsOneWidget);
+      expect(find.text('GitHub Repository'), findsOneWidget);
     });
   });
 }

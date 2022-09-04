@@ -12,3 +12,5 @@ const githubResponseZero = {
 const lenMinKeywordSearch = 3;
 
 const animationDurationMS = 500;
+
+const debounceDurationMS = 1000;
