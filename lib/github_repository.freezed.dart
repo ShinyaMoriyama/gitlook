@@ -34,6 +34,8 @@ mixin _$ResultData {
   @JsonKey(defaultValue: "unknown")
   String get language => throw _privateConstructorUsedError;
   List<String> get topics => throw _privateConstructorUsedError;
+  @JsonKey(name: "open_issues_count")
+  int get numIssues => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -54,7 +56,8 @@ abstract class $ResultDataCopyWith<$Res> {
       @JsonKey(name: "watchers_count") int numWatching,
       @JsonKey(name: "forks_count") int numForks,
       @JsonKey(defaultValue: "unknown") String language,
-      List<String> topics});
+      List<String> topics,
+      @JsonKey(name: "open_issues_count") int numIssues});
 
   $OwnerCopyWith<$Res> get owner;
 }
@@ -77,6 +80,7 @@ class _$ResultDataCopyWithImpl<$Res> implements $ResultDataCopyWith<$Res> {
     Object? numForks = freezed,
     Object? language = freezed,
     Object? topics = freezed,
+    Object? numIssues = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
@@ -111,6 +115,10 @@ class _$ResultDataCopyWithImpl<$Res> implements $ResultDataCopyWith<$Res> {
           ? _value.topics
           : topics // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      numIssues: numIssues == freezed
+          ? _value.numIssues
+          : numIssues // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 
@@ -137,7 +145,8 @@ abstract class _$$_ResultDataCopyWith<$Res>
       @JsonKey(name: "watchers_count") int numWatching,
       @JsonKey(name: "forks_count") int numForks,
       @JsonKey(defaultValue: "unknown") String language,
-      List<String> topics});
+      List<String> topics,
+      @JsonKey(name: "open_issues_count") int numIssues});
 
   @override
   $OwnerCopyWith<$Res> get owner;
@@ -163,6 +172,7 @@ class __$$_ResultDataCopyWithImpl<$Res> extends _$ResultDataCopyWithImpl<$Res>
     Object? numForks = freezed,
     Object? language = freezed,
     Object? topics = freezed,
+    Object? numIssues = freezed,
   }) {
     return _then(_$_ResultData(
       name: name == freezed
@@ -197,13 +207,17 @@ class __$$_ResultDataCopyWithImpl<$Res> extends _$ResultDataCopyWithImpl<$Res>
           ? _value._topics
           : topics // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      numIssues: numIssues == freezed
+          ? _value.numIssues
+          : numIssues // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_ResultData with DiagnosticableTreeMixin implements _ResultData {
+class _$_ResultData implements _ResultData {
   const _$_ResultData(
       {@JsonKey(name: "full_name") required this.name,
       @JsonKey(defaultValue: "default description") required this.description,
@@ -212,7 +226,8 @@ class _$_ResultData with DiagnosticableTreeMixin implements _ResultData {
       @JsonKey(name: "watchers_count") required this.numWatching,
       @JsonKey(name: "forks_count") required this.numForks,
       @JsonKey(defaultValue: "unknown") required this.language,
-      required final List<String> topics})
+      required final List<String> topics,
+      @JsonKey(name: "open_issues_count") required this.numIssues})
       : _topics = topics;
 
   factory _$_ResultData.fromJson(Map<String, dynamic> json) =>
@@ -246,23 +261,12 @@ class _$_ResultData with DiagnosticableTreeMixin implements _ResultData {
   }
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ResultData(name: $name, description: $description, owner: $owner, numStars: $numStars, numWatching: $numWatching, numForks: $numForks, language: $language, topics: $topics)';
-  }
+  @JsonKey(name: "open_issues_count")
+  final int numIssues;
 
   @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'ResultData'))
-      ..add(DiagnosticsProperty('name', name))
-      ..add(DiagnosticsProperty('description', description))
-      ..add(DiagnosticsProperty('owner', owner))
-      ..add(DiagnosticsProperty('numStars', numStars))
-      ..add(DiagnosticsProperty('numWatching', numWatching))
-      ..add(DiagnosticsProperty('numForks', numForks))
-      ..add(DiagnosticsProperty('language', language))
-      ..add(DiagnosticsProperty('topics', topics));
+  String toString() {
+    return 'ResultData(name: $name, description: $description, owner: $owner, numStars: $numStars, numWatching: $numWatching, numForks: $numForks, language: $language, topics: $topics, numIssues: $numIssues)';
   }
 
   @override
@@ -279,7 +283,8 @@ class _$_ResultData with DiagnosticableTreeMixin implements _ResultData {
                 .equals(other.numWatching, numWatching) &&
             const DeepCollectionEquality().equals(other.numForks, numForks) &&
             const DeepCollectionEquality().equals(other.language, language) &&
-            const DeepCollectionEquality().equals(other._topics, _topics));
+            const DeepCollectionEquality().equals(other._topics, _topics) &&
+            const DeepCollectionEquality().equals(other.numIssues, numIssues));
   }
 
   @JsonKey(ignore: true)
@@ -293,7 +298,8 @@ class _$_ResultData with DiagnosticableTreeMixin implements _ResultData {
       const DeepCollectionEquality().hash(numWatching),
       const DeepCollectionEquality().hash(numForks),
       const DeepCollectionEquality().hash(language),
-      const DeepCollectionEquality().hash(_topics));
+      const DeepCollectionEquality().hash(_topics),
+      const DeepCollectionEquality().hash(numIssues));
 
   @JsonKey(ignore: true)
   @override
@@ -323,7 +329,9 @@ abstract class _ResultData implements ResultData {
           required final int numForks,
       @JsonKey(defaultValue: "unknown")
           required final String language,
-      required final List<String> topics}) = _$_ResultData;
+      required final List<String> topics,
+      @JsonKey(name: "open_issues_count")
+          required final int numIssues}) = _$_ResultData;
 
   factory _ResultData.fromJson(Map<String, dynamic> json) =
       _$_ResultData.fromJson;
@@ -350,6 +358,9 @@ abstract class _ResultData implements ResultData {
   String get language;
   @override
   List<String> get topics;
+  @override
+  @JsonKey(name: "open_issues_count")
+  int get numIssues;
   @override
   @JsonKey(ignore: true)
   _$$_ResultDataCopyWith<_$_ResultData> get copyWith =>
@@ -430,7 +441,7 @@ class __$$_OwnerCopyWithImpl<$Res> extends _$OwnerCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Owner with DiagnosticableTreeMixin implements _Owner {
+class _$_Owner implements _Owner {
   const _$_Owner({@JsonKey(name: "avatar_url") required this.avatarUrl});
 
   factory _$_Owner.fromJson(Map<String, dynamic> json) =>
@@ -441,16 +452,8 @@ class _$_Owner with DiagnosticableTreeMixin implements _Owner {
   final String avatarUrl;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'Owner(avatarUrl: $avatarUrl)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'Owner'))
-      ..add(DiagnosticsProperty('avatarUrl', avatarUrl));
   }
 
   @override
@@ -592,9 +595,7 @@ class __$$_SearchResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_SearchResponse
-    with DiagnosticableTreeMixin
-    implements _SearchResponse {
+class _$_SearchResponse implements _SearchResponse {
   const _$_SearchResponse(
       {@JsonKey(name: 'items')
           required final List<Map<String, Object?>> results,
@@ -618,17 +619,8 @@ class _$_SearchResponse
   final int total;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'SearchResponse(results: $results, total: $total)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'SearchResponse'))
-      ..add(DiagnosticsProperty('results', results))
-      ..add(DiagnosticsProperty('total', total));
   }
 
   @override

@@ -8,6 +8,7 @@ enum LKeys {
   watchingLabel,
   forksLabel,
   languageLabel,
+  issuesLabel,
 }
 
 abstract class LocApp {
@@ -20,6 +21,7 @@ abstract class LocApp {
       LKeys.watchingLabel: "watching",
       LKeys.forksLabel: "forks",
       LKeys.languageLabel: "Language",
+      LKeys.issuesLabel: "issues",
     },
     "ja": {
       LKeys.appTitle: "GitHub Repository",
@@ -29,6 +31,7 @@ abstract class LocApp {
       LKeys.watchingLabel: "watching",
       LKeys.forksLabel: "forks",
       LKeys.languageLabel: "言語",
+      LKeys.issuesLabel: "issues",
     },
   };
 

@@ -13,6 +13,7 @@ class RepoCard extends StatelessWidget {
   final int numForks;
   final String language;
   final String avatarUrl;
+  final int numIssues;
 
   const RepoCard({
     required this.title,
@@ -23,8 +24,9 @@ class RepoCard extends StatelessWidget {
     required this.numForks,
     required this.language,
     required this.avatarUrl,
-    Key? key,
-  }) : super(key: key);
+    required this.numIssues,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -43,78 +45,23 @@ class RepoCard extends StatelessWidget {
               tapBodyToCollapse: true,
               tapBodyToExpand: true,
             ),
-            header: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 4),
-                  child: SizedBox(
-                    height: 20,
-                    width: 20,
-                    child: CircleAvatar(
-                      backgroundImage: NetworkImage(avatarUrl),
-                      backgroundColor: Colors.grey,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Text(
-                    title,
-                    style: Theme.of(context).textTheme.titleMedium,
-                    softWrap: true,
-                    maxLines: 2,
-                  ),
-                ),
-              ],
+            header: _HeaderWidget(
+              avatarUrl: avatarUrl,
+              title: title,
             ),
             collapsed: Text(
               desc,
               softWrap: true,
               maxLines: 2,
             ),
-            expanded: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(desc),
-                const SizedBox(
-                  height: 4,
-                ),
-                Wrap(
-                  spacing: 4,
-                  runSpacing: 6,
-                  children: topics
-                      .map((e) => Chip(
-                            label: Text(e),
-                            materialTapTargetSize:
-                                MaterialTapTargetSize.shrinkWrap,
-                          ))
-                      .toList(),
-                ),
-                const SizedBox(
-                  height: 4,
-                ),
-                Metrics(
-                  iconData: FontAwesomeIcons.star,
-                  value: numStars,
-                  label: LocApp.translate(LKeys.starsLabel),
-                ),
-                Metrics(
-                  iconData: FontAwesomeIcons.eye,
-                  value: numWatching,
-                  label: LocApp.translate(LKeys.watchingLabel),
-                ),
-                Metrics(
-                  iconData: FontAwesomeIcons.codeFork,
-                  value: numForks,
-                  label: LocApp.translate(LKeys.forksLabel),
-                ),
-                Row(
-                  children: [
-                    Text("${LocApp.translate(LKeys.languageLabel)}:"),
-                    Text(language),
-                  ],
-                ),
-              ],
+            expanded: _ExpandedWidget(
+              desc: desc,
+              topics: topics,
+              numStars: numStars,
+              numWatching: numWatching,
+              numForks: numForks,
+              numIssues: numIssues,
+              language: language,
             ),
           ),
         ),
@@ -123,16 +70,15 @@ class RepoCard extends StatelessWidget {
   }
 }
 
-class Metrics extends StatelessWidget {
+class _Metrics extends StatelessWidget {
   final IconData iconData;
   final int value;
   final String label;
-  const Metrics({
+  const _Metrics({
     required this.iconData,
     required this.value,
     required this.label,
-    Key? key,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -150,6 +96,115 @@ class Metrics extends StatelessWidget {
         const SizedBox(width: 4),
         Text(label),
       ]),
+    );
+  }
+}
+
+class _HeaderWidget extends StatelessWidget {
+  final String avatarUrl;
+  final String title;
+  const _HeaderWidget({
+    required this.avatarUrl,
+    required this.title,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(right: 4),
+          child: SizedBox(
+            height: 20,
+            width: 20,
+            child: CircleAvatar(
+              backgroundImage: NetworkImage(avatarUrl),
+              backgroundColor: Colors.grey,
+            ),
+          ),
+        ),
+        Expanded(
+          child: Text(
+            title,
+            style: Theme.of(context).textTheme.titleMedium,
+            softWrap: true,
+            maxLines: 2,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _ExpandedWidget extends StatelessWidget {
+  final String desc;
+  final List<String> topics;
+  final int numStars;
+  final int numWatching;
+  final int numForks;
+  final int numIssues;
+  final String language;
+
+  const _ExpandedWidget({
+    required this.desc,
+    required this.topics,
+    required this.numStars,
+    required this.numWatching,
+    required this.numForks,
+    required this.numIssues,
+    required this.language,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(desc),
+        const SizedBox(
+          height: 4,
+        ),
+        Wrap(
+          spacing: 4,
+          runSpacing: 6,
+          children: topics
+              .map((e) => Chip(
+                    label: Text(e),
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  ))
+              .toList(),
+        ),
+        const SizedBox(
+          height: 4,
+        ),
+        _Metrics(
+          iconData: FontAwesomeIcons.star,
+          value: numStars,
+          label: LocApp.translate(LKeys.starsLabel),
+        ),
+        _Metrics(
+          iconData: FontAwesomeIcons.eye,
+          value: numWatching,
+          label: LocApp.translate(LKeys.watchingLabel),
+        ),
+        _Metrics(
+          iconData: FontAwesomeIcons.codeFork,
+          value: numForks,
+          label: LocApp.translate(LKeys.forksLabel),
+        ),
+        _Metrics(
+          iconData: FontAwesomeIcons.circleDot,
+          value: numIssues,
+          label: LocApp.translate(LKeys.issuesLabel),
+        ),
+        Row(
+          children: [
+            Text("${LocApp.translate(LKeys.languageLabel)}:"),
+            Text(language),
+          ],
+        ),
+      ],
     );
   }
 }

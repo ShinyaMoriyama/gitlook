@@ -11,7 +11,7 @@ const githubResponseZero = {
   "items": [],
 };
 
-const lenMinKeywordSearch = 3;
+const lenMinKeywordSearch = 1;
 
 const animationDurationMS = 500;
 

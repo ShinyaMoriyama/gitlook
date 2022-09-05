@@ -17,6 +17,7 @@ _$_ResultData _$$_ResultDataFromJson(Map<String, dynamic> json) =>
       language: json['language'] as String? ?? 'unknown',
       topics:
           (json['topics'] as List<dynamic>).map((e) => e as String).toList(),
+      numIssues: json['open_issues_count'] as int,
     );
 
 Map<String, dynamic> _$$_ResultDataToJson(_$_ResultData instance) =>
@@ -29,6 +30,7 @@ Map<String, dynamic> _$$_ResultDataToJson(_$_ResultData instance) =>
       'forks_count': instance.numForks,
       'language': instance.language,
       'topics': instance.topics,
+      'open_issues_count': instance.numIssues,
     };
 
 _$_Owner _$$_OwnerFromJson(Map<String, dynamic> json) => _$_Owner(

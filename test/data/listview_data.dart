@@ -11,6 +11,7 @@ const listviewResultData = [
     numForks: 1,
     topics: ["reactjs", "fishing", "lure"],
     language: "JavaScript",
+    numIssues: 10,
   ),
   ResultData(
     name: "juck/dummyrepo",
@@ -22,6 +23,7 @@ const listviewResultData = [
     numForks: 3,
     topics: [],
     language: "JavaScript",
+    numIssues: 9,
   ),
   ResultData(
     name: "jakesgordon/javascript-tetris",
@@ -33,6 +35,7 @@ const listviewResultData = [
     numForks: 2,
     topics: [],
     language: "JavaScript",
+    numIssues: 3,
   ),
   ResultData(
     name: "rrousselGit/riverpod",
@@ -53,6 +56,7 @@ const listviewResultData = [
       "state-management"
     ],
     language: "Dart",
+    numIssues: 13,
   ),
   ResultData(
     name: "bizz84/movie_app_state_management_flutter",
@@ -73,6 +77,7 @@ const listviewResultData = [
       "state-management"
     ],
     language: "Dart",
+    numIssues: 1,
   ),
   ResultData(
     name: "funwithflutter/riverpod_tutorials",
@@ -84,6 +89,7 @@ const listviewResultData = [
     numForks: 33,
     topics: [],
     language: "Dart",
+    numIssues: 3,
   ),
   ResultData(
     name: "ResoCoder/flutter-statenotifier-riverpod-tutorial",
@@ -95,6 +101,7 @@ const listviewResultData = [
     numForks: 18,
     topics: [],
     language: "Dart",
+    numIssues: 3,
   ),
   ResultData(
     name: "valadarshana/flutter-statenotifier-riverpod-tutorial-master",
@@ -106,6 +113,7 @@ const listviewResultData = [
     numForks: 0,
     topics: [],
     language: "Dart",
+    numIssues: 0,
   ),
   ResultData(
     name: "pallets/flask",
@@ -125,6 +133,7 @@ const listviewResultData = [
       "wsgi"
     ],
     language: "Python",
+    numIssues: 101,
   ),
   ResultData(
     name: "miguelgrinberg/flasky",
@@ -140,6 +149,7 @@ const listviewResultData = [
       "python",
     ],
     language: "Python",
+    numIssues: 32,
   ),
   ResultData(
     name: "tester/testrepo",
@@ -151,6 +161,7 @@ const listviewResultData = [
     numForks: 1,
     topics: ["reactjs", "fishing", "lure"],
     language: "JavaScript",
+    numIssues: 0,
   ),
   ResultData(
     name: "juck/dummyrepo",
@@ -162,6 +173,7 @@ const listviewResultData = [
     numForks: 3,
     topics: [],
     language: "JavaScript",
+    numIssues: 0,
   ),
   ResultData(
     name: "jakesgordon/javascript-tetris",
@@ -173,6 +185,7 @@ const listviewResultData = [
     numForks: 2,
     topics: [],
     language: "JavaScript",
+    numIssues: 0,
   ),
   ResultData(
     name: "rrousselGit/riverpod",
@@ -193,6 +206,7 @@ const listviewResultData = [
       "state-management"
     ],
     language: "Dart",
+    numIssues: 31,
   ),
   ResultData(
     name: "bizz84/movie_app_state_management_flutter",
@@ -213,6 +227,7 @@ const listviewResultData = [
       "state-management"
     ],
     language: "Dart",
+    numIssues: 10,
   ),
   ResultData(
     name: "funwithflutter/riverpod_tutorials",
@@ -224,6 +239,7 @@ const listviewResultData = [
     numForks: 33,
     topics: [],
     language: "Dart",
+    numIssues: 10,
   ),
   ResultData(
     name: "ResoCoder/flutter-statenotifier-riverpod-tutorial",
@@ -235,6 +251,7 @@ const listviewResultData = [
     numForks: 18,
     topics: [],
     language: "Dart",
+    numIssues: 0,
   ),
   ResultData(
     name: "valadarshana/flutter-statenotifier-riverpod-tutorial-master",
@@ -246,6 +263,7 @@ const listviewResultData = [
     numForks: 0,
     topics: [],
     language: "Dart",
+    numIssues: 0,
   ),
   ResultData(
     name: "pallets/flask",
@@ -265,6 +283,7 @@ const listviewResultData = [
       "wsgi"
     ],
     language: "Python",
+    numIssues: 141,
   ),
   ResultData(
     name: "miguelgrinberg/flasky",
@@ -280,5 +299,6 @@ const listviewResultData = [
       "python",
     ],
     language: "Python",
+    numIssues: 10,
   ),
 ];

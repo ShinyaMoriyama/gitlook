@@ -82,6 +82,7 @@ class ResultData with _$ResultData {
     @JsonKey(name: "forks_count") required int numForks,
     @JsonKey(defaultValue: "unknown") required String language,
     required List<String> topics,
+    @JsonKey(name: "open_issues_count") required int numIssues,
   }) = _ResultData;
 
   factory ResultData.fromJson(Map<String, Object?> json) =>

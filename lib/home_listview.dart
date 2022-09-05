@@ -68,7 +68,7 @@ class _HomeListviewState extends ConsumerState<HomeListview> {
     _debounceKeyword(keyword);
 
     return ref.watch(serchProvider(_debouncedKeyword)).when(data: (data) {
-      print("list view: ${data.length}");
+      debugPrint("list view: ${data.length}");
       return SliverList(
         delegate: SliverChildBuilderDelegate(
           childCount: data.length,
@@ -81,16 +81,18 @@ class _HomeListviewState extends ConsumerState<HomeListview> {
             numForks: data[index].numForks,
             language: data[index].language,
             avatarUrl: data[index].owner.avatarUrl,
+            numIssues: data[index].numIssues,
           ),
         ),
       );
     }, error: ((error, stackTrace) {
-      print("error on serchProvider=> error:[$error] stackTrace:[$stackTrace]");
+      debugPrint(
+          "error on serchProvider=> error:[$error] stackTrace:[$stackTrace]");
       return SliverToBoxAdapter(
         child: Container(),
       );
     }), loading: () {
-      print("loading on serchProvider");
+      debugPrint("loading on serchProvider");
       return const SliverToBoxAdapter(
           child: Center(child: CircularProgressIndicator()));
     });

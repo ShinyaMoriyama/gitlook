@@ -78,7 +78,7 @@ void main() {
       final dataResulList = await container.read(serchProvider("dum").future);
       expect(dataResulList.length, 20);
 
-      final dataResulList2 = await container.read(serchProvider("du").future);
+      final dataResulList2 = await container.read(serchProvider("").future);
       expect(dataResulList2.length, 0);
     });
   });
