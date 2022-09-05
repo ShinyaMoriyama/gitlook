@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 const githubSearchPath = "https://api.github.com/search/repositories";
 const githubSearchQuery = "q";
 const githubSearchPerPageKey = "per_page";
@@ -19,3 +21,9 @@ const boxNameSettings = "settings";
 const fieldDarkMode = "darkMode";
 
 const themeModeSystem = "system";
+
+const supportedLocale = [
+  Locale('en', ''),
+  Locale('en', 'US'),
+  Locale('ja', 'JP'),
+];

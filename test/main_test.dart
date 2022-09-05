@@ -19,9 +19,7 @@ void main() {
 
       expect(find.text('GitHub Repository'), findsOneWidget);
     });
-  });
 
-  group("Theme mode", () {
     testWidgets("Default theme mode is system", (WidgetTester tester) async {
       await tester.pumpWidget(const ProviderScope(child: MyApp()));
       final MaterialApp materialApp = tester.widget(find.byType(MaterialApp));

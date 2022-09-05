@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import './settings/dark_mode.dart';
 import './home_listview.dart';
+import './localization/loc_app.dart';
 
 class HomeAppBar extends ConsumerWidget {
   final TextEditingController textEdigintController;
@@ -19,7 +20,7 @@ class HomeAppBar extends ConsumerWidget {
       pinned: false,
       snap: false,
       centerTitle: true,
-      title: const Text("GitHub Repository"),
+      title: Text(LocApp.translate(LKeys.appTitle)),
       actions: [
         IconButton(
           onPressed: () {
@@ -43,11 +44,11 @@ class HomeAppBar extends ConsumerWidget {
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10.0),
             ),
-            hintText: 'Search or jump to...',
+            hintText: LocApp.translate(LKeys.searchFor),
             prefixIcon: const Icon(Icons.search),
           ),
           onSubmitted: (String value) {
-            print("onSubmitted: $value");
+            debugPrint("onSubmitted: $value");
           },
         ),
       ),

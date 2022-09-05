@@ -3,9 +3,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import './home_page.dart';
 import './constant.dart';
+import './localization/loc_base.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -54,8 +56,28 @@ class MyApp extends HookWidget {
       theme: themeLight(),
       darkTheme: themeDark(),
       themeMode: ThemeMode.values.byName(themeMode),
-      home: const HomePage(),
       debugShowCheckedModeBanner: false,
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: supportedLocale,
+      home: const LocalizedApp(),
     );
+  }
+}
+
+class LocalizedApp extends HookWidget {
+  const LocalizedApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    useMemoized(() {
+      Locale locale = Localizations.localeOf(context);
+      LocBase.language = locale.languageCode;
+      debugPrint(locale.toLanguageTag());
+    });
+    return const HomePage();
   }
 }

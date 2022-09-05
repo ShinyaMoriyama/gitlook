@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:expandable/expandable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import './constant.dart';
+import './localization/loc_app.dart';
 
 class RepoCard extends StatelessWidget {
   final String title;
@@ -95,21 +96,21 @@ class RepoCard extends StatelessWidget {
                 Metrics(
                   iconData: FontAwesomeIcons.star,
                   value: numStars,
-                  label: "stars",
+                  label: LocApp.translate(LKeys.starsLabel),
                 ),
                 Metrics(
                   iconData: FontAwesomeIcons.eye,
                   value: numWatching,
-                  label: "watching",
+                  label: LocApp.translate(LKeys.watchingLabel),
                 ),
                 Metrics(
                   iconData: FontAwesomeIcons.codeFork,
                   value: numForks,
-                  label: "forks",
+                  label: LocApp.translate(LKeys.forksLabel),
                 ),
                 Row(
                   children: [
-                    const Text("Language:"),
+                    Text("${LocApp.translate(LKeys.languageLabel)}:"),
                     Text(language),
                   ],
                 ),

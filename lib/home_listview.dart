@@ -16,7 +16,7 @@ final serchProvider =
 
     final cancelToken = CancelToken();
     ref.onDispose(() {
-      print("onDispose");
+      debugPrint("onDispose");
       cancelToken.cancel();
     });
 
