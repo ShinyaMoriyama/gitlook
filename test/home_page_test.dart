@@ -8,6 +8,7 @@ import 'package:gitlook/github_repository.dart';
 import 'package:gitlook/main.dart';
 import 'package:gitlook/home_listview.dart';
 import 'data/listview_data.dart';
+import 'data/hive_setup.dart';
 
 class FakeRipository extends GithubRepository {
   FakeRipository(Ref ref) : super(ref);
@@ -22,6 +23,14 @@ class FakeRipository extends GithubRepository {
 }
 
 void main() {
+  setUpAll(() async {
+    await setUpTestHive();
+  });
+
+  tearDownAll(() async {
+    await tearDownTestHive();
+  });
+
   group("App bar", () {
     testWidgets('App bar visible as scrolling up and down', (tester) async {
       await tester.pumpWidget(
