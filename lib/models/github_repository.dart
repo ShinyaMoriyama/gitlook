@@ -3,8 +3,8 @@ import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
+import './configuration.dart';
 import '../common/constant.dart';
-import '../configuration.dart';
 
 part 'github_repository.freezed.dart';
 part 'github_repository.g.dart';

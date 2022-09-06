@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
-import 'package:gitlook/configuration.dart';
-
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import 'package:gitlook/models/configuration.dart';
 
 void main() {
   group("Configuration", () {

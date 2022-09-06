@@ -5,7 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 
 import 'package:gitlook/common/constant.dart';
-import 'package:gitlook/configuration.dart';
+import 'package:gitlook/models/configuration.dart';
 import 'package:gitlook/models/github_repository.dart';
 
 import 'data/response_data.dart';
