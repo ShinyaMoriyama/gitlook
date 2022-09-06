@@ -5,8 +5,8 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import './home_page.dart';
-import './constant.dart';
+import './search/home_page.dart';
+import './common/constant.dart';
 import './localization/loc_base.dart';
 
 void main() async {

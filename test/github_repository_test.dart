@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:gitlook/configuration.dart';
-
-import 'package:gitlook/github_repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:gitlook/constant.dart';
-
 import 'package:dio/dio.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
+
+import 'package:gitlook/common/constant.dart';
+import 'package:gitlook/configuration.dart';
+import 'package:gitlook/models/github_repository.dart';
 
 import 'data/response_data.dart';
 

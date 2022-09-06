@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import './settings/dark_mode.dart';
 import './home_listview.dart';
-import './localization/loc_app.dart';
+import '../settings/dark_mode.dart';
+import '../localization/loc_app.dart';
 
 class HomeAppBar extends ConsumerWidget {
   final TextEditingController textEdigintController;

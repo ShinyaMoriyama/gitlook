@@ -1,4 +1,4 @@
-import 'package:gitlook/github_repository.dart';
+import 'package:gitlook/models/github_repository.dart';
 
 const listviewResultData = [
   ResultData(

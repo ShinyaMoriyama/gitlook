@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:expandable/expandable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import './constant.dart';
-import './localization/loc_app.dart';
+import '../common/constant.dart';
+import '../localization/loc_app.dart';
 
 class RepoCard extends StatelessWidget {
   final String title;

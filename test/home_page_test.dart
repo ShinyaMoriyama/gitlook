@@ -4,9 +4,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:dio/dio.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 
-import 'package:gitlook/github_repository.dart';
+import 'package:gitlook/models/github_repository.dart';
 import 'package:gitlook/main.dart';
-import 'package:gitlook/home_listview.dart';
+import 'package:gitlook/search/home_listview.dart';
+
 import 'data/listview_data.dart';
 import 'data/hive_setup.dart';
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:gitlook/constant.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import '../common/constant.dart';
 import '../localization/loc_app.dart';
 
 class DarkMode extends HookWidget {

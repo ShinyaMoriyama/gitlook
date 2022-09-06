@@ -4,8 +4,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:dio/dio.dart';
 import './repo_card.dart';
-import './github_repository.dart';
-import './constant.dart';
+import '../models/github_repository.dart';
+import '../common/constant.dart';
 
 final serchProvider =
     FutureProvider.autoDispose.family<List<ResultData>, String>(

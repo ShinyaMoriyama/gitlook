@@ -1,10 +1,10 @@
 import 'dart:io';
 import 'dart:math';
 import 'package:path/path.dart' as p;
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
-import 'package:gitlook/constant.dart';
+
+import 'package:gitlook/common/constant.dart';
 
 final _random = Random();
 String _tempPath = p.join(Directory.current.path, '.dart_tool', 'test', 'tmp');
