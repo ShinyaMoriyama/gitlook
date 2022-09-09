@@ -10,17 +10,17 @@ An app to search for Github repositories corresponding with the code check provi
 
 ## Packages
 
--   _flutter_hooks_ => text input controller and retrieve hive persistence
+-   _flutter_hooks_ => listen to text input controller and hive persistence
 -   _hooks_riverpod_ => state management to achieve api cache
 -   _expandable_ => make the card widget expandable
--   _settings_ui_ => make the settings easy to implement
--   _flex_color_scheme_ => switch themes with ease
+-   _settings_ui_ => make the setting pages easy to implement
+-   _flex_color_scheme_ => prepared dark and light themes
 
 ## Technical Achievements
 
 -   Debounce user input to avoid unnecessary api calls
 -   Cache the api response to avoid unnecessary api calls
--   Github personal token if provided which is applied on _.gitignore_
+-   Enable to use a personal token which is treated with _.gitignore_
 -   Apply constant variables on _constant.dart_ to avoid hard coding
 -   Simple localization by _loc_app.dart_ and _loc_base.dart_
 
@@ -34,7 +34,7 @@ _assets/configuration.dart_ is necessary.
 }
 ```
 
-Set "" as a token code if not provided
+Set "" as a token code if not available
 
 ```
 {
