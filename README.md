@@ -23,3 +23,21 @@ An app to search for Github repositories corresponding with the code check provi
 -   Github personal token if provided which is applied on _.gitignore_
 -   Apply constant variables on _constant.dart_ to avoid hard coding
 -   Simple localization by _loc_app.dart_ and _loc_base.dart_
+
+## Notes
+
+_assets/configuration.dart_ is necessary.
+
+```
+{
+    "Authorization": "Bearer <security token code>"
+}
+```
+
+Set "" as a token code if not provided
+
+```
+{
+    "Authorization": ""
+}
+```

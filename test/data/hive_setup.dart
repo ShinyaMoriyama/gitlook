@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:math';
+import 'package:flutter/material.dart';
 import 'package:path/path.dart' as p;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
@@ -17,6 +18,10 @@ Future<Directory> getTempDir() async {
   if (await dir.exists()) await dir.delete(recursive: true);
 
   await dir.create(recursive: true);
+
+  final listFiles = await Directory(_tempPath).list(recursive: true).toList();
+  debugPrint("list files: $listFiles");
+
   return dir;
 }
 
@@ -33,4 +38,5 @@ Future<void> _setUpTestHiveOpenBox() async {
 /// Deletes the temporary [Hive].
 Future<void> tearDownTestHive() async {
   await Hive.deleteFromDisk();
+  await Directory(_tempPath).delete(recursive: true);
 }
